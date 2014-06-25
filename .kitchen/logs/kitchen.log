@@ -1,0 +1,29 @@
+I, [2014-06-23T22:39:16.141130 #2858]  INFO -- Kitchen: -----> Starting Kitchen (v1.2.1)
+E, [2014-06-23T22:39:16.144773 #2858] ERROR -- Kitchen: ------Exception-------
+E, [2014-06-23T22:39:16.145264 #2858] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2014-06-23T22:39:16.145309 #2858] ERROR -- Kitchen: Message: Kitchen YAML file /Users/johnfitzpatrick/Documents/Scratch/learnchefjune14/chef-repo/.kitchen.yml does not exist.
+E, [2014-06-23T22:39:16.145346 #2858] ERROR -- Kitchen: ------Backtrace-------
+E, [2014-06-23T22:39:16.145382 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/loader/yaml.rb:74:in `read'
+E, [2014-06-23T22:39:16.145420 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:78:in `data'
+E, [2014-06-23T22:39:16.145456 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:66:in `suites'
+E, [2014-06-23T22:39:16.145492 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:90:in `filter_instances'
+E, [2014-06-23T22:39:16.145528 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:72:in `build_instances'
+E, [2014-06-23T22:39:16.145563 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/config.rb:52:in `instances'
+E, [2014-06-23T22:39:16.145602 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/command.rb:64:in `get_filtered_instances'
+E, [2014-06-23T22:39:16.145639 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/command.rb:85:in `parse_subcommand'
+E, [2014-06-23T22:39:16.145674 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/command/action.rb:37:in `block in call'
+E, [2014-06-23T22:39:16.145709 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/1.9.1/benchmark.rb:280:in `measure'
+E, [2014-06-23T22:39:16.145744 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/command/action.rb:36:in `call'
+E, [2014-06-23T22:39:16.145780 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:47:in `perform'
+E, [2014-06-23T22:39:16.145815 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:118:in `block (2 levels) in <class:CLI>'
+E, [2014-06-23T22:39:16.145850 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/thor-0.19.1/lib/thor/command.rb:27:in `run'
+E, [2014-06-23T22:39:16.145885 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/thor-0.19.1/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2014-06-23T22:39:16.145924 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/cli.rb:233:in `invoke_task'
+E, [2014-06-23T22:39:16.145962 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/thor-0.19.1/lib/thor.rb:359:in `dispatch'
+E, [2014-06-23T22:39:16.145999 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+E, [2014-06-23T22:39:16.146033 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/bin/kitchen:13:in `block in <top (required)>'
+E, [2014-06-23T22:39:16.146069 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/lib/kitchen/errors.rb:81:in `with_friendly_errors'
+E, [2014-06-23T22:39:16.146116 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/lib/ruby/gems/1.9.1/gems/test-kitchen-1.2.1/bin/kitchen:13:in `<top (required)>'
+E, [2014-06-23T22:39:16.146150 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/bin/kitchen:23:in `load'
+E, [2014-06-23T22:39:16.146184 #2858] ERROR -- Kitchen: /Users/johnfitzpatrick/.rbenv/versions/1.9.3-p385/bin/kitchen:23:in `<main>'
+E, [2014-06-23T22:39:16.146217 #2858] ERROR -- Kitchen: ----------------------
