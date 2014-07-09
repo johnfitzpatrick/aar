@@ -92,9 +92,11 @@ execute "db1" do
 	action :run
 end
 
+dbpassword = node["root_dbpswd"]
+
 execute "db2" do
 	# command "mysql -u root -p#{password} -D mysql -r -B -N -e \"CREATE USER 'aarapp'@'localhost'\""
-	command "mysql -u root -e  \"CREATE USER 'aarapp'@'localhost'\""
+	command "mysql -u root -e  \"CREATE USER 'aarapp'@'localhost' IDENTIFIED BY '#{dbpassword}'\""
     # not_if {::File.exists?("aarapp")}  how to chk user exists????
 	action :run
 end
