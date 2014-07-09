@@ -47,7 +47,7 @@ wget https://github.com/colincam/Awesome-Appliance-Repair/archive/master.zip
 unzip master.zip
 mv /tmp/Awesome-Appliance-Repair-master/AAR /var/www
   EOH
-	not_if {::File.exists?("/var/www/AAR/master.zip")}
+	not_if {::File.exists?("/tmp/master.zip")}
 end
 
 	
@@ -87,22 +87,20 @@ end
 # mysql -u root  < "make_AARdb.sql"
 
 execute "db1" do
-	# command "mysql -u root -proot_dbpswd -D mysql -r -B -N -e \"use AARdb\""
 	command "mysql -u root -e \"use AARdb\""
 	action :run
 end
 
-dbpassword = node["root_dbpswd"]
+# dbpassword = node["root_dbpswd"]
+dbpassword = node["password"]
 
 execute "db2" do
-	# command "mysql -u root -p#{password} -D mysql -r -B -N -e \"CREATE USER 'aarapp'@'localhost'\""
 	command "mysql -u root -e  \"CREATE USER 'aarapp'@'localhost' IDENTIFIED BY '#{dbpassword}'\""
     # not_if {::File.exists?("aarapp")}  how to chk user exists????
 	action :run
 end
 
 execute "db3" do
-	# command "mysql -u root -p#{password} -D mysql -r -B -N -e \"GRANT CREATE,INSERT,DELETE,UPDATE,SELECT on AARdb.* to aarapp@localhost\""
 	command "mysql -u root -e  \"GRANT CREATE,INSERT,DELETE,UPDATE,SELECT on AARdb.* to aarapp@localhost\""
 	action :run
 end
