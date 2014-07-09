@@ -9,15 +9,10 @@
 #include_recipe "mysql::server"
 #include_recipe "mysql::client"
 
-#should use apt-get cookbook to do a 'sudo apt-get update'
 
 execute 'aptgetupdate' do
   command 'apt-get update'
 end
-
-# %w{mysql-server apache2 libapache2-mod-wsgi python-pip python-mysqldb flask}.each do |pkg|
-# 	package pkg 
-# end
 
 %w{mysql-server apache2 libapache2-mod-wsgi python-pip python-mysqldb zip}.each do |pkg|
 	package pkg 
@@ -25,12 +20,6 @@ end
 
 # 'package flask' wouldnt work, so this
 execute "pip install Flask"
-
-# Or is this best practice?
-# execute 'installflask' do
-#   command 'pip install Flask'
-# end
-
 
 service "apache2" do
 	action [ :enable, :start ]
@@ -52,10 +41,11 @@ end
 
 bash "installzip" do
 #  user "www-data"
-  cwd "/var/www/AAR/"
+  cwd "/tmp"
   code <<-EOH
 wget https://github.com/colincam/Awesome-Appliance-Repair/archive/master.zip
 unzip master.zip
+mv /tmp/Awesome-Appliance-Repair-master/AAR /var/www
   EOH
 	not_if {::File.exists?("/var/www/AAR/master.zip")}
 end
@@ -74,39 +64,51 @@ template "/etc/apache2/sites-enabled/AAR-apache.conf" do
 	source "AAR-apache.conf.erb"
 	owner "www-data"
 	group "www-data"
-	mode "0644"
-	# variable(
-	# 	:logger => node["logdir"]
-	# 	)
+	# mode "0644"
+	variables(
+		:logger => node["logdir"]
+		)
 notifies :restart, "service[apache2]"
 end
 
-# template "/var/www/AAR/AAR_config.py" do
-# 	source "AAR_config.py.erb"
-# end
+template "/var/www/AAR/AAR_config.py" do
+	source "AAR_config.py.erb"
+end
 
-cookbook_file "/var/www/AAR/AAR_config.py" do
- 	source "AAR_config.py"
- end
+
+# password = node["password"]
+
+execute "cratedb" do
+	command "mysql -u root  < \"/tmp/Awesome-Appliance-Repair-master/make_AARdb.sql\""
+    # not_if {::File.exists?("AARdb")}  how to chk DB exists????
+	action :run
+end
+
+# mysql -u root  < "make_AARdb.sql"
+
+execute "db1" do
+	# command "mysql -u root -proot_dbpswd -D mysql -r -B -N -e \"use AARdb\""
+	command "mysql -u root -e \"use AARdb\""
+	action :run
+end
+
+execute "db2" do
+	# command "mysql -u root -p#{password} -D mysql -r -B -N -e \"CREATE USER 'aarapp'@'localhost'\""
+	command "mysql -u root -e  \"CREATE USER 'aarapp'@'localhost'\""
+    # not_if {::File.exists?("aarapp")}  how to chk user exists????
+	action :run
+end
+
+execute "db3" do
+	# command "mysql -u root -p#{password} -D mysql -r -B -N -e \"GRANT CREATE,INSERT,DELETE,UPDATE,SELECT on AARdb.* to aarapp@localhost\""
+	command "mysql -u root -e  \"GRANT CREATE,INSERT,DELETE,UPDATE,SELECT on AARdb.* to aarapp@localhost\""
+	action :run
+end
 
 package "curl"
 
+# mysql -u root -e "DROP DATABASE AARdb"
 
 
-#Will this work?  Maybe use wget?
-# deploy "/my/deploy/dir" do
-# 	repo "https://github.com/colincam/Awesome-Appliance-Repair/archive/master.zip"
-# 	# revision "abc123" # or "HEAD" or "TAG_for_1.0" or (subversion) "1234"
-# 	# user "deploy_ninja"
-# 	# enable_submodules true
-# 	# migrate true
-# 	deploy_to "/var/www/AAR"
-# 	# migration_command "rake db:migrate"
-# 	# environment "RAILS_ENV" => "production", "OTHER_ENV" => "foo"
-# 	# shallow_clone true
-# 	# action :deploy # or :rollback
-# 	# restart_command "touch tmp/restart.txt"
-# 	# git_ssh_wrapper "wrap-ssh4git.sh"
-# 	scm_provider Chef::Provider::Git # is the default, for svn: Chef::Provider::Subversion
-# end
+
 
