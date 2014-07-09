@@ -78,6 +78,13 @@ end
 
 # password = node["password"]
 
+# 'action :run' isn't req'd here, but icluded for a laugh 
+# Also dont need th e end...do for oneliners
+
+
+# could just do this if no guard
+# execute "mysql -u root  < \"/tmp/Awesome-Appliance-Repair-master/make_AARdb.sql\""
+# But need to figure out the guard
 execute "cratedb" do
 	command "mysql -u root  < \"/tmp/Awesome-Appliance-Repair-master/make_AARdb.sql\""
     # not_if {::File.exists?("AARdb")}  how to chk DB exists????
