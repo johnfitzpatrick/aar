@@ -78,10 +78,6 @@ end
 
 # password = node["password"]
 
-# 'action :run' isn't req'd here, but icluded for a laugh 
-# Also dont need th e end...do for oneliners
-
-
 # could just do this if no guard
 # execute "mysql -u root  < \"/tmp/Awesome-Appliance-Repair-master/make_AARdb.sql\""
 # But need to figure out the guard
@@ -90,8 +86,6 @@ execute "cratedb" do
     # not_if {::File.exists?("AARdb")}  how to chk DB exists????
 	action :run
 end
-
-# mysql -u root  < "make_AARdb.sql"
 
 execute "db1" do
 	command "mysql -u root -e \"use AARdb\""
@@ -114,7 +108,6 @@ end
 
 package "curl"
 
-# mysql -u root -e "DROP DATABASE AARdb"
 
 
 
