@@ -1,0 +1,12 @@
+task :default => [:rubocop, :foodcritic]
+
+desc 'Run Ruby style checks with Rubocop'
+task :rubocop
+  sh 'rubocop'
+end
+
+desc 'Run Chef style checks with Foodcritic'
+task :foodcritic do
+  sh 'foodcritic -X spec –t ~FC003 .'
+end
+
